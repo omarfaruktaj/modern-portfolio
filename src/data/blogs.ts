@@ -1,0 +1,142 @@
+export const blogs = [
+  {
+    id: "serverless-nextjs",
+    title: "Deploying Scalable Applications with Serverless and Next.js",
+    excerpt:
+      "Discover how Serverless architecture with Next.js can reduce costs, simplify DevOps, and scale effortlessly on platforms like Vercel and AWS Lambda.",
+    content:
+      "### Deploying Scalable Applications with Serverless and Next.js\n\nWelcome to the era of serverless development, where you can build and deploy applications without managing a single server. By combining the power of **Next.js** with serverless architecture, you can create high-performing, cost-effective, and highly scalable applications that automatically handle traffic spikes.\n\n#### Why Serverless? The Benefits of Not Thinking About Servers\n\nTraditional application deployment often involves provisioning servers, configuring load balancers, and constantly monitoring resources. Serverless abstracts all of that away. Instead of managing infrastructure, you can focus entirely on your code.\n\n- **Cost-Effective:** You only pay for what you use. If your application has low traffic, your costs remain low. There are no idle server costs.\n- **Auto-Scaling:** As traffic increases, the serverless platform automatically scales your application to meet demand. This is perfect for applications with unpredictable traffic patterns.\n- **Reduced Maintenance:** No servers to patch, no operating systems to update. The platform handles all the infrastructure management for you, freeing up your team to focus on new features.\n\n#### Next.js: Built for the Serverless Era\n\nNext.js is a powerful React framework that's a perfect match for serverless environments. Its built-in features align beautifully with the serverless model:\n\n- **API Routes:** You can create backend endpoints as serverless functions directly within your Next.js project. Each route is a separate function, allowing for fine-grained scaling.\n- **Incremental Static Regeneration (ISR):** This feature allows you to generate and update static pages in the background after they've been requested. The page remains static for a set duration, then a new version is built and served. This drastically reduces server load and improves performance.\n- **Image Optimization:** The built-in Image component automatically optimizes images on-demand. This process can be handled by a serverless function, ensuring fast loading times without complex manual setup.\n\n#### Deployment on Vercel and AWS Lambda\n\nPlatforms like **Vercel** have a deep, native integration with Next.js. Vercel automatically deploys your Next.js application, treating each page and API route as a separate serverless function. This is often the simplest and most efficient way to deploy a Next.js application.\n\nFor more control, you can deploy to a platform like **AWS Lambda** with an API Gateway. This approach is more hands-on but provides ultimate flexibility. You'll use a tool like the Serverless Framework to manage the deployment of your Next.js build artifacts as Lambda functions, connecting them to an API Gateway for public access.\n\nBy combining the simplicity and power of Next.js with the efficiency of serverless, you're not just building a website—you're building a scalable, resilient, and cost-effective application ready for the modern web.",
+    featuredImage: "/blogs/1.png",
+    author: {
+      id: "laura-nguyen",
+      name: "Omar Faruk",
+      avatar: "/placeholder.svg?height=100&width=100",
+      bio: "Cloud-native developer and JAMstack advocate.",
+      role: "Full-Stack Developer",
+      social: {
+        twitter: "https://twitter.com/lauranguyen",
+        github: "https://github.com/lauranguyen",
+      },
+    },
+    publishedAt: new Date("2024-02-10T13:00:00.000Z"),
+    readingTime: 11,
+    tags: ["Serverless", "Next.js", "JAMstack", "Deployment"],
+    category: "Backend",
+    slug: "serverless-nextjs-deployment",
+    isPublished: true,
+    views: 1720,
+    likes: 102,
+  },
+  {
+    id: "css-variables-responsive",
+    title: "Responsive Design with Modern CSS: Embracing Variables and Clamp()",
+    excerpt:
+      "Learn how to use CSS variables and modern units like `clamp()` to build truly responsive designs without media query bloat.",
+    content:
+      "### Responsive Design with Modern CSS: Embracing Variables and Clamp()\n\nTired of endless media queries and rigid, pixel-perfect layouts that break on every new screen size? Modern CSS provides powerful, dynamic tools that allow you to build truly fluid and responsive designs without the bloat. The secret lies in a combination of **CSS variables** and the magical `clamp()` function.\n\n#### The Old Way: Media Query Bloat\n\nFor years, we've relied on media queries to adjust our designs for different viewport sizes. The code often looks something like this:\n\n```css\n.container {\n  font-size: 16px;\n  padding: 1rem;\n}\n\n@media (min-width: 768px) {\n  .container {\n    font-size: 18px;\n    padding: 2rem;\n  }\n}\n\n@media (min-width: 1200px) {\n  .container {\n    font-size: 20px;\n    padding: 3rem;\n  }\n}\n```\n\nThis approach works, but it's repetitive and requires you to define breakpoints for every element you want to change. What if we could define a fluid range instead?\n\n#### The New Way: Fluidity with `clamp()` and Variables\n\nThe `clamp()` function is a true game-changer. It allows you to specify a minimum, preferred, and maximum value for a CSS property. The browser then automatically adjusts the value within that range based on the viewport size. The syntax is simple: `clamp(min, preferred, max)`.\n\nLet's use `clamp()` to create a fluid font size:\n\n```css\nh1 {\n  font-size: clamp(2rem, 5vw, 4rem);\n}\n```\n\nHere, `h1` will be no smaller than `2rem` and no larger than `4rem`. In between, it will fluidly scale with the viewport width, maintaining a size of `5vw` (5% of the viewport width).\n\nNow, let's combine this with CSS variables to make our design system even more powerful and maintainable. We can define our sizing rules once and reuse them everywhere.\n\n```css\n:root {\n  --font-size-fluid: clamp(1rem, 2.5vw, 1.5rem);\n  --padding-fluid: clamp(1rem, 4vw, 3rem);\n}\n\nbody {\n  font-size: var(--font-size-fluid);\n}\n\n.card {\n  padding: var(--padding-fluid);\n}\n```\n\nBy using CSS variables, you centralize your design tokens. You can now adjust the fluid behavior of your entire site by changing a single variable. This makes it incredibly easy to maintain consistency and iterate on your designs.\n\nUsing `clamp()` and CSS variables simplifies your codebase, reduces the need for endless media queries, and creates a more robust, naturally responsive design. Start embracing these modern CSS features today to build layouts that look great on any device, from a small phone to a massive desktop monitor.",
+    featuredImage: "/blogs/2.png",
+    author: {
+      id: "emily-roberts",
+      name: "Omar Faruk",
+      avatar: "/placeholder.svg?height=100&width=100",
+      bio: "CSS wizard and advocate for accessible design.",
+      role: "Full-Stack Developer",
+      social: {
+        twitter: "https://twitter.com/emilycodes",
+        github: "https://github.com/emilycodes",
+      },
+    },
+    publishedAt: new Date("2024-02-10T13:00:00.000Z"),
+    readingTime: 9,
+    tags: ["CSS", "Responsive Design", "Accessibility", "Frontend"],
+    category: "Frontend",
+    slug: "modern-css-responsive-design",
+    isPublished: true,
+    views: 2406,
+    likes: 134,
+  },
+  {
+    id: "fullstack-ai-integration",
+    title: "Integrating AI in Full-Stack Web Applications",
+    excerpt:
+      "A practical guide to using AI APIs like OpenAI and Hugging Face in full-stack apps, with real-world examples and secure implementation tips.",
+    content:
+      "### Integrating AI in Full-Stack Web Applications\n\nThe integration of **Artificial Intelligence (AI)** into web applications is no longer a futuristic concept—it's a present-day reality. From personalized user experiences to automated content generation, AI can significantly enhance your applications. This guide will walk you through the practical steps of integrating AI APIs into your full-stack projects, with a focus on powerful tools like **OpenAI** and **Hugging Face**.\n\n#### The Full-Stack AI Architecture\n\nA typical full-stack AI integration involves a few key components:\n\n1.  **Frontend:** Collects user input and sends a request to the backend.\n2.  **Backend:** Acts as a secure intermediary. It receives the request, calls the AI API with the necessary credentials, and processes the AI's response before sending it back to the frontend.\n3.  **AI API:** A service like OpenAI's GPT models or a Hugging Face model provides the core AI functionality.\n\nThis architecture ensures that your API keys remain secure on the server side and are never exposed to the client.\n\n#### A Practical Example: Text Generation with OpenAI\n\nLet's imagine you're building a content management system where users can generate blog post ideas.\n\n1.  **Backend Setup (Node.js/Express):**\n    First, install the OpenAI SDK: `npm install openai`.\n    Then, create an API route that handles the request:\n\n    ```javascript\n    const express = require('express');\n    const { OpenAI } = require('openai');\n    const router = express.Router();\n\n    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\n\n    router.post('/generate-idea', async (req, res) => {\n      try {\n        const { topic } = req.body;\n        const response = await openai.chat.completions.create({\n          model: \"gpt-3.5-turbo\",\n          messages: [{ role: \"user\", content: `Generate a blog post title and a short summary about the topic: ${topic}` }],\n          max_tokens: 150,\n        });\n        res.json(response.choices[0].message.content);\n      } catch (error) {\n        console.error(error);\n        res.status(500).send(\"Error generating content.\");\n      }\n    });\n\n    module.exports = router;\n    ```\n\n2.  **Frontend Integration (React):**\n    On the frontend, you'd have a simple form that takes user input and sends a POST request to your backend endpoint:\n\n    ```javascript\n    async function generateBlogIdea(topic) {\n      const response = await fetch('/api/generate-idea', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        body: JSON.stringify({ topic }),\n      });\n      const data = await response.json();\n      // Update UI with the generated content\n    }\n    ```\n\n#### The Power of Hugging Face\n\nWhile OpenAI is great for general-purpose tasks, Hugging Face provides a vast ecosystem of pre-trained models for specific tasks like sentiment analysis, text summarization, or image recognition. You can host these models yourself or use a managed service. The integration pattern remains similar: use your backend to call the Hugging Face API or your self-hosted model endpoint.\n\nBy integrating AI into your full-stack applications, you can create more intelligent, dynamic, and engaging user experiences. The key is to leverage the power of external APIs securely from your backend, allowing you to build amazing features without the complexity of training your own models.",
+    featuredImage: "/blogs/3.png",
+    author: {
+      id: "david-lee",
+      name: "Omar Faruk",
+      avatar: "/placeholder.svg?height=100&width=100",
+      bio: "Full-stack developer exploring AI-driven interfaces.",
+      role: "Full-Stack Developer",
+      social: {
+        twitter: "https://twitter.com/davidlee_dev",
+        github: "https://github.com/davidlee",
+      },
+    },
+    publishedAt: new Date("2024-02-10T13:00:00.000Z"),
+    readingTime: 13,
+    tags: ["AI", "Full-Stack", "OpenAI", "APIs"],
+    category: "AI",
+    slug: "ai-integration-fullstack-web",
+    isPublished: true,
+    views: 1892,
+    likes: 120,
+  },
+  {
+    id: "testing-modern-apps",
+    title: "Testing Modern Web Applications with Playwright and Vitest",
+    excerpt:
+      "Explore how Playwright and Vitest can provide fast, reliable testing for modern apps—from component-level tests to full E2E coverage.",
+    content:
+      "### Testing Modern Web Applications with Playwright and Vitest\n\nIn the fast-paced world of web development, ensuring your applications are reliable and bug-free is paramount. Fortunately, modern testing tools like **Playwright** and **Vitest** have emerged to make the process faster and more effective. By combining these two powerful frameworks, you can create a robust testing strategy that covers everything from unit and component tests to full end-to-end (E2E) user flows.\n\n#### Vitest: Lightning-Fast Unit and Component Testing\n\n**Vitest** is a next-generation test runner that's built on top of Vite. It offers a incredibly fast developer experience, especially for modern JavaScript frameworks. Because it leverages Vite's dev server, it can run your tests with near-instant hot module reloading.\n\n-   **Seamless Integration:** Vitest works out of the box with projects using Vite, with a configuration that's very similar to Jest, making it easy to adopt.\n-   **Fast Performance:** It runs tests in parallel and uses native ES modules, leading to significantly faster test execution times compared to older test runners.\n-   **Component Testing:** While primarily a unit test runner, you can use Vitest with a testing library like `@testing-library/react` or `@testing-library/vue` to perform fast and reliable component-level tests, ensuring your UI components work as expected in isolation.\n\n#### Playwright: Reliable End-to-End Testing\n\nWhile Vitest ensures your individual components and functions are working, **Playwright** takes a step back and tests the entire application from a user's perspective. It's a powerful E2E testing framework that can automate interactions across all major browsers (Chromium, Firefox, and WebKit).\n\n-   **Cross-Browser Consistency:** Write a single test and run it across all browsers. Playwright ensures your application works consistently for all your users.\n-   **Built-in Trace Viewer:** One of Playwright's most powerful features is its trace viewer. When a test fails, you can see a step-by-step trace of what happened—including screenshots, DOM snapshots, and network logs—making debugging a breeze.\n-   **Auto-Wait and Assertions:** Playwright intelligently waits for elements to be ready before interacting with them, eliminating flaky tests that are common with older E2E frameworks.\n\n#### A Comprehensive Testing Strategy\n\nBy using both tools, you can create a testing pyramid that is both efficient and thorough:\n\n-   **Unit Tests (Vitest):** Focus on the smallest parts of your code, like a specific function or class. These tests are fast and cover the core logic.\n-   **Component Tests (Vitest):** Test your UI components in a controlled environment to ensure they render correctly and handle user interactions.\n-   **E2E Tests (Playwright):** Simulate a real user journey through your application. These tests are slower but provide the highest level of confidence that your application works as a whole.\n\nThis layered approach ensures that you catch bugs early in the development cycle while also having a safety net that guarantees your entire application is functioning correctly.",
+    featuredImage: "/blogs/4.png",
+    author: {
+      id: "kevin-brooks",
+      name: "Omar Faruk",
+      avatar: "/placeholder.svg?height=100&width=100",
+      bio: "Software tester turned full-stack engineer.",
+      role: "Full-Stack Developer",
+      social: {
+        linkedin: "https://linkedin.com/in/kevinbrooks",
+        github: "https://github.com/kevinbrooks",
+      },
+    },
+    publishedAt: new Date("2024-02-10T13:00:00.000Z"),
+    readingTime: 10,
+    tags: ["Testing", "Playwright", "Vitest", "Automation"],
+    category: "DevOps",
+    slug: "testing-modern-web-apps",
+    isPublished: true,
+    views: 1315,
+    likes: 76,
+  },
+  {
+    id: "pnpm-monorepos",
+    title: "Managing Monorepos with pnpm and TurboRepo",
+    excerpt:
+      "Unlock scalable development with pnpm workspaces and TurboRepo. Learn best practices for dependency sharing and CI workflows.",
+    content:
+      "### Managing Monorepos with pnpm and TurboRepo\n\nThe world of software development is moving towards a more unified approach. **Monorepos**—repositories that contain multiple distinct projects—are becoming increasingly popular for their ability to streamline code sharing, simplify dependency management, and improve collaboration. To get the most out of a monorepo, you need the right tools. Enter **pnpm** and **TurboRepo**, a powerful combination that provides a fast, efficient, and scalable solution.\n\n#### Why Monorepos?\n\nMonorepos solve common problems in a multi-package environment:\n\n-   **Simplified Dependency Management:** Packages can easily share dependencies, ensuring consistent versions across your projects.\n-   **Atomic Commits:** Changes to a component and its consuming application can be made in a single commit, simplifying versioning and deployment.\n-   **Code Sharing:** It's easier to create shared UI components, utility libraries, and other reusable code without the overhead of publishing separate packages.\n\nHowever, monorepos can become slow and difficult to manage with older tooling. This is where modern tools come in.\n\n#### pnpm: The Fast and Efficient Package Manager\n\n**pnpm** is a package manager that is a perfect fit for monorepos due to its unique approach to dependency installation. Unlike npm or yarn, which can lead to large, bloated `node_modules` folders, pnpm uses a content-addressable store on your machine.\n\n-   **Disk Space Savings:** If you have multiple projects that use the same dependency, pnpm will only download and store it once. Each project then symlinks to this single store, saving a massive amount of disk space.\n-   **Speed:** By avoiding redundant downloads and using symlinks, pnpm installations are significantly faster.\n-   **Strictness:** pnpm's strict nature prevents your code from accidentally accessing dependencies that were not explicitly listed in your `package.json`, which leads to a more stable and predictable dependency graph.\n\n#### TurboRepo: The High-Performance Build System\n\n**TurboRepo** is a high-performance build system for JavaScript and TypeScript monorepos. It's designed to make your development workflow lightning-fast by intelligently caching your build outputs and running tasks in parallel.\n\n-   **Remote Caching:** TurboRepo can store build outputs in a shared remote cache. This means if a teammate or CI/CD runner has already built a specific package, TurboRepo can instantly download the output instead of rebuilding it from scratch. This can dramatically speed up CI pipelines.\n-   **Parallel Execution:** It intelligently analyzes your dependency graph and runs tasks (like `build`, `test`, or `lint`) in parallel, only building what's changed and what's required by those changes.\n-   **Simplified Configuration:** TurboRepo's configuration is simple and easy to understand. You define your tasks and their dependencies, and TurboRepo handles the rest.\n\nBy combining pnpm's efficient dependency management with TurboRepo's intelligent caching and parallel execution, you get a monorepo setup that is both easy to maintain and incredibly fast. This powerful duo allows you to scale your development efforts and build complex applications without sacrificing performance.",
+    featuredImage: "/blogs/5.png",
+    author: {
+      id: "nina-gomez",
+      name: "Omar Faruk",
+      avatar: "/placeholder.svg?height=100&width=100",
+      bio: "DevOps and tooling enthusiast focused on productivity.",
+      role: "Full-Stack Developer",
+      social: {
+        github: "https://github.com/ninagomez",
+        website: "https://ninagomez.dev",
+      },
+    },
+    publishedAt: new Date("2024-02-10T13:00:00.000Z"),
+    readingTime: 14,
+    tags: ["pnpm", "Monorepos", "Tooling", "TurboRepo"],
+    category: "Dev Tools",
+    slug: "monorepo-pnpm-turborepo",
+    isPublished: true,
+    views: 2264,
+    likes: 149,
+  },
+];
