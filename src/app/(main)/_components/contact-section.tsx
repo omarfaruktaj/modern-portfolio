@@ -11,7 +11,7 @@ import {
   Twitter,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type FormData = {
   name: string;
@@ -134,40 +134,40 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "alex@example.com",
-      href: "mailto:alex@example.com",
+      value: "omarabdullah1811@gmail.com",
+      href: "mailto:omarabdullah1811@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+8801798642262",
+      href: "tel:+8801798642262",
     },
-    { icon: MapPin, label: "Location", value: "San Francisco, CA", href: "#" },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: "Cumilla, Bangladesh",
+      href: "#",
+    },
     {
       icon: Linkedin,
       label: "LinkedIn",
       value: "/in/alexchen",
-      href: "https://linkedin.com/in/alexchen",
+      href: "https://linkedin.com/in/me-omar-faruk",
     },
     {
       icon: Github,
       label: "GitHub",
       value: "@alexchen",
-      href: "https://github.com/alexchen",
+      href: "https://github.com/omarfaruktaj",
     },
     {
       icon: Twitter,
       label: "Twitter",
       value: "@alexchen_dev",
-      href: "https://twitter.com/alexchen_dev",
+      href: "https://twitter.com/me_omar",
     },
   ];
-  useEffect(() => {
-    if (window.location.hash === "#contact") {
-      history.replaceState(null, "", " ");
-    }
-  }, []);
 
   return (
     <section
@@ -323,7 +323,7 @@ const ContactSection = () => {
                             }
                             onChange={(e) => handleInputChange(e.target.value)}
                             className="w-full dark:bg-white/10 border dark:border-white/20 rounded-xl px-4 py-3 dark:text-white placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
-                            autoFocus
+                            // autoFocus
                           />
                         ) : (
                           <textarea
@@ -336,7 +336,7 @@ const ContactSection = () => {
                             onChange={(e) => handleInputChange(e.target.value)}
                             rows={4}
                             className="w-full dark:bg-white/10 border dark:border-white/20 rounded-xl px-4 py-3 dark:text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 resize-none"
-                            autoFocus
+                            // autoFocus
                           />
                         )}
                       </div>

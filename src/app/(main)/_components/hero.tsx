@@ -5,6 +5,7 @@ import { Cursor, CursorFollow, CursorProvider } from "@/components/ui/cursor";
 import { MorphingText } from "@/components/ui/morphing-text";
 import gsap from "gsap";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 export function Hero() {
@@ -130,7 +131,10 @@ export function Hero() {
                 ref={ctaRef}
               >
                 <Button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
-                  <span className="relative z-10 flex items-center justify-center">
+                  <Link
+                    href={"/#projects"}
+                    className="relative z-10 flex items-center justify-center"
+                  >
                     View My Work
                     <svg
                       className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1"
@@ -145,15 +149,19 @@ export function Hero() {
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       />
                     </svg>
-                  </span>
+                  </Link>
                   <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Button>
 
                 <Button
                   variant={"outline"}
                   className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-full transition-all duration-300 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-500/50 backdrop-blur-sm bg-white/50 dark:bg-gray-800/50"
+                  asChild
                 >
-                  <span className="flex items-center justify-center">
+                  <Link
+                    href={"/#contact"}
+                    className="flex items-center justify-center"
+                  >
                     Let&apos;s Connect
                     <svg
                       className="ml-2 w-5 h-5 transition-transform group-hover:scale-110"
@@ -168,7 +176,7 @@ export function Hero() {
                         d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                       />
                     </svg>
-                  </span>
+                  </Link>
                 </Button>
               </div>
             </div>

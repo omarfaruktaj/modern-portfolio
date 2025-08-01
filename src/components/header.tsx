@@ -3,16 +3,17 @@ import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 
 import {
+  MobileNav,
+  MobileNavHeader,
+  MobileNavMenu,
+  MobileNavToggle,
   Navbar,
   NavBody,
   NavItems,
-  MobileNav,
-  MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
 } from "@/components/ui/navbar";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
@@ -45,7 +46,12 @@ export default function Header() {
       link: "/#contact",
     },
   ];
-
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/files/omarfaruk's_resume.pdf";
+    link.download = "omarfaruk's_resume.pdf";
+    link.click();
+  };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -59,7 +65,7 @@ export default function Header() {
             value={theme as "light" | "dark" | "system" | undefined}
             onChange={setTheme as (theme: "light" | "dark" | "system") => void}
           />
-          <Button>Resume</Button>
+          <Button onClick={handleDownload}>Resume</Button>
         </div>
       </NavBody>
 
@@ -88,18 +94,21 @@ export default function Header() {
           onClose={() => setIsMobileMenuOpen(false)}
         >
           {navItems.map((item, idx) => (
-            <a
+            <Link
               key={`mobile-link-${idx}`}
               href={item.link}
               onClick={() => setIsMobileMenuOpen(false)}
               className="relative text-neutral-600 dark:text-neutral-300"
             >
               <span className="block">{item.name}</span>
-            </a>
+            </Link>
           ))}
           <div className="flex w-full flex-col gap-4">
             <Button
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                handleDownload();
+                setIsMobileMenuOpen(false);
+              }}
               className="w-full"
             >
               Download Resume
