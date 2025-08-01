@@ -152,19 +152,19 @@ const ContactSection = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "/in/alexchen",
+      value: "/in/me-omar-faruk",
       href: "https://linkedin.com/in/me-omar-faruk",
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "@alexchen",
+      value: "@omarfaruktaj",
       href: "https://github.com/omarfaruktaj",
     },
     {
       icon: Twitter,
       label: "Twitter",
-      value: "@alexchen_dev",
+      value: "@me_omar",
       href: "https://twitter.com/me_omar",
     },
   ];

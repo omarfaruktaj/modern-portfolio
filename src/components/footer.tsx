@@ -215,15 +215,15 @@ export default function Footer({ scrollToSection }: FooterProps) {
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-4">
                 <p className="text-gray-400 text-sm">
-                  &copy; {new Date().getFullYear()} John Doe. All rights
+                  &copy; {new Date().getFullYear()} Omar Faruk. All rights
                   reserved.
                 </p>
                 <Badge
                   variant="outline"
                   className="border-gray-600 text-gray-400"
                 >
-                  Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> and
-                  React
+                  Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> by
+                  Omar
                 </Badge>
               </div>
 
