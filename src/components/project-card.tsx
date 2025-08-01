@@ -58,7 +58,7 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
   return (
     <div
       className={cn(
-        "w-full max-w-md space-y-4 rounded-lg border bg-white p-4 shadow-sm ",
+        "w-full max-w-md space-y-4 rounded-lg border  p-4 shadow-sm ",
         className
       )}
     >
