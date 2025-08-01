@@ -11,7 +11,7 @@ import {
   Twitter,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type FormData = {
   name: string;
@@ -163,6 +163,11 @@ const ContactSection = () => {
       href: "https://twitter.com/alexchen_dev",
     },
   ];
+  useEffect(() => {
+    if (window.location.hash === "#contact") {
+      history.replaceState(null, "", " ");
+    }
+  }, []);
 
   return (
     <section

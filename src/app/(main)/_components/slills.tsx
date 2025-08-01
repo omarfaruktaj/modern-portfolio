@@ -89,7 +89,10 @@ export default function Skills() {
 
   return (
     <TooltipProvider>
-      <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <section
+        className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+        id="skills"
+      >
         <div className="container mx-auto px-4">
           <div ref={containerRef} className="text-center mb-20 opacity-0">
             {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
