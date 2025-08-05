@@ -197,8 +197,8 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
           <Button asChild className="w-full lg:w-auto">
             <Link
               href={project.links.liveDemo || "#"}
-              // target="_blank"
-              // rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-1.5"
             >
               <ExternalLink size={14} />
@@ -209,8 +209,6 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
         <Button asChild variant="outline" className="w-full lg:w-auto">
           <Link
             href={`/projects/${project.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex items-center gap-1.5"
           >
             More Details

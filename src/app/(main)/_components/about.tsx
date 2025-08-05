@@ -1,54 +1,77 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Badge } from "@/components/ui/badge";
 import { Cursor, CursorFollow, CursorProvider } from "@/components/ui/cursor";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function About() {
   const aboutRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const timelineItems = gsap.utils.toArray(".timeline-item");
-
-      timelineItems.forEach((item: any, index) => {
-        gsap.fromTo(
-          item,
-          { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-          {
-            opacity: 1,
-            x: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-            delay: index * 0.1,
-          }
-        );
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
       });
 
-      // Animate profile image
-      gsap.fromTo(
-        ".profile-image",
-        { opacity: 0, scale: 0.8, rotation: -5 },
+      tl.fromTo(
+        ".about-header",
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+      );
+
+      tl.fromTo(
+        ".profile-image-container",
+        { opacity: 0, scale: 0.8, y: 20 },
         {
           opacity: 1,
           scale: 1,
-          rotation: 0,
-          duration: 1,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: ".profile-image",
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
+          y: 0,
+          duration: 1.2,
+          ease: "back.out(1.4)",
+        },
+        "-=0.5"
       );
+
+      tl.fromTo(
+        ".about-content-text",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+        "-=0.8"
+      );
+
+      tl.fromTo(
+        ".about-badge",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.5"
+      );
+
+      gsap.to(imageRef.current, {
+        y: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: aboutRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }, aboutRef);
 
     return () => ctx.revert();
@@ -58,10 +81,11 @@ export function About() {
     <div
       ref={aboutRef}
       id="about"
-      className="flex items-center justify-center min-h-screen py-20 px-4 bg-white dark:bg-gray-900"
+      className="flex items-center justify-center min-h-[80vh] py-20 px-4 
+             bg-slate-50 dark:bg-slate-900"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="about-header text-center mb-16 opacity-0">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Passionate about creating digital experiences that make a difference
@@ -70,13 +94,16 @@ export function About() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="space-y-6">
-            <div className="profile-image">
+            <div
+              ref={imageRef}
+              className="profile-image-container relative opacity-0"
+            >
               <Image
                 src="/images/omar.png"
-                alt="Alex Johnson"
+                alt="Omar Faruk"
                 width={400}
                 height={400}
-                className="rounded-2xl shadow-2xl mx-auto lg:mx-0"
+                className="rounded-2xl shadow-2xl mx-auto lg:mx-0 relative z-10"
               />
               <CursorProvider>
                 <Cursor>
@@ -101,7 +128,7 @@ export function About() {
           </div>
 
           <div className="space-y-6">
-            <p className="text-lg leading-relaxed text-muted-foreground">
+            <p className="about-content-text text-lg leading-relaxed text-muted-foreground opacity-0">
               I&apos;m Omar Faruk, a Full-Stack Web Developer focused on
               creating innovative, scalable, and user-centric solutions. With
               expertise in modern web technologies, I specialize in building
@@ -111,10 +138,18 @@ export function About() {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">Problem Solver</Badge>
-              <Badge variant="secondary">Team Player</Badge>
-              <Badge variant="secondary">Continuous Learner</Badge>
-              <Badge variant="secondary">Open Source Contributor</Badge>
+              <Badge className="about-badge" variant="secondary">
+                Problem Solver
+              </Badge>
+              <Badge className="about-badge" variant="secondary">
+                Team Player
+              </Badge>
+              <Badge className="about-badge" variant="secondary">
+                Continuous Learner
+              </Badge>
+              <Badge className="about-badge" variant="secondary">
+                Open Source Contributor
+              </Badge>
             </div>
           </div>
         </div>

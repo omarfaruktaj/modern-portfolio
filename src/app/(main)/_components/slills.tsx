@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,7 +9,10 @@ import {
 } from "@/components/ui/tooltip";
 import { skills } from "@/data/skills";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const getLevelInfo = (level: string) => {
   switch (level) {
@@ -46,59 +48,58 @@ const getLevelInfo = (level: string) => {
 };
 
 export default function Skills() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const skillRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const skillCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    gsap.fromTo(
-      containerRef.current,
-      { opacity: 0, y: 30 },
+    const skillCards = skillCardRefs.current;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.fromTo(
+      ".skills-header",
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+    );
+
+    tl.fromTo(
+      skillCards,
+      { opacity: 0, y: 30, scale: 0.95 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 90%",
-        },
-      }
+        scale: 1,
+        duration: 0.7,
+        stagger: 0.05,
+        ease: "back.out(1.2)",
+      },
+      "-=0.5"
     );
-    skillRefs.current.forEach((el) => {
-      if (!el) return;
-      gsap.fromTo(
-        el,
-        {
-          opacity: 0,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-          },
-        }
-      );
-    });
+
+    return () => {
+      if (tl && tl.scrollTrigger) {
+        tl.scrollTrigger.kill();
+      }
+    };
   }, []);
 
   return (
     <TooltipProvider>
       <section
-        className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+        ref={sectionRef}
+        className="flex items-center justify-center min-h-screen py-24 
+             bg-gradient-to-br from-slate-50 via-white to-slate-100 
+             dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
         id="skills"
       >
         <div className="container mx-auto px-4">
-          <div ref={containerRef} className="text-center mb-20 opacity-0">
-            {/* <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-              Technical Expertise
-            </div> */}
+          <div className="skills-header text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text ">
               Skills & Technologies
             </h2>
@@ -117,11 +118,9 @@ export default function Skills() {
                 <div
                   key={skill.name}
                   ref={(el) => {
-                    skillRefs.current[index] = el;
+                    skillCardRefs.current[index] = el;
                   }}
-                  onMouseEnter={() => setHoveredSkill(skill.name)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                  className="opacity-0 scale-90"
+                  className="opacity-0"
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>

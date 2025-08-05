@@ -40,7 +40,6 @@ export default function Home() {
 
     gsap.ticker.lagSmoothing(0);
 
-    // Initialize scroll-triggered animations
     const sections = gsap.utils.toArray(".animate-section");
 
     sections.forEach((section: any) => {
@@ -93,9 +92,15 @@ export default function Home() {
       <div className="animate-section">
         <Skills />
       </div>
-      <Projects />
-      <BlogSection />
-      <ContactSection />
+      <div className="animate-section">
+        <Projects />
+      </div>
+      <div className="animate-section">
+        <BlogSection />
+      </div>
+      <div className="animate-section">
+        <ContactSection />
+      </div>
       <SmoothFollower />
     </div>
   );

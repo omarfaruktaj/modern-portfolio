@@ -47,6 +47,7 @@ export default function Header() {
     },
   ];
   const handleDownload = () => {
+    console.log("clicked");
     const link = document.createElement("a");
     link.href = "/files/omarfaruk's_resume.pdf";
     link.download = "omarfaruk's_resume.pdf";
@@ -65,7 +66,9 @@ export default function Header() {
             value={theme as "light" | "dark" | "system" | undefined}
             onChange={setTheme as (theme: "light" | "dark" | "system") => void}
           />
-          <Button onClick={handleDownload}>Resume</Button>
+          <Button onClick={handleDownload} className="z-50">
+            Resume
+          </Button>
         </div>
       </NavBody>
 

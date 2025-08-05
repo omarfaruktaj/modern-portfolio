@@ -13,8 +13,7 @@ export function Hero() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null); // ✅ NEW ref for image
-
+  const imageRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
@@ -76,7 +75,9 @@ export function Hero() {
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden 
+             bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 
+             dark:from-slate-900 dark:via-indigo-900 dark:to-purple-900"
     >
       {/* Background + floating elements */}
       <div className="absolute inset-0 overflow-hidden">
