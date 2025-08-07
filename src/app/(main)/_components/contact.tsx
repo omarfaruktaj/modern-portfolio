@@ -39,56 +39,56 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<string | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
   const socialLinksRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const formRef = useRef<HTMLDivElement>(null);
 
+  // Load saved data
+  useEffect(() => {
+    const saved = localStorage.getItem("contactFormData");
+    if (saved) {
+      setFormData(JSON.parse(saved));
+    }
+  }, []);
+
+  // Save progress to localStorage
+  useEffect(() => {
+    localStorage.setItem("contactFormData", JSON.stringify(formData));
+  }, [formData]);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Create a timeline for the entire section's animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%", // Start the animation when the section is 80% in view
+          start: "top 80%",
           toggleActions: "play none none reverse",
         },
       });
 
-      // Animate the main heading and sub-headline
       tl.fromTo(
         ".contact-header",
         { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
+        { opacity: 1, y: 0, duration: 1 }
       );
-
-      // Animate the left-side content (title and paragraph)
       tl.fromTo(
         ".contact-info-left",
         { opacity: 0, x: -50 },
-        { opacity: 1, x: 0, duration: 1, ease: "power2.out" },
+        { opacity: 1, x: 0, duration: 1 },
         "-=0.5"
       );
-
-      // Animate the form on the right side
       tl.fromTo(
         ".contact-form-right",
         { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 1, ease: "power2.out" },
-        "<" // Use a "<" to make this animation start at the same time as the previous one
+        { opacity: 1, x: 0, duration: 1 },
+        "<"
       );
-
-      // Animate the social links with a stagger effect
       tl.fromTo(
         socialLinksRef.current,
         { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power2.out",
-        },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1 },
         "-=0.6"
       );
     }, sectionRef);
@@ -96,12 +96,11 @@ const ContactSection = () => {
     return () => ctx.revert();
   }, []);
 
-  // GSAP animation for form steps
   useEffect(() => {
     gsap.fromTo(
       formRef.current,
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+      { opacity: 1, y: 0, duration: 0.5 }
     );
   }, [currentStep, isSubmitted]);
 
@@ -109,9 +108,8 @@ const ContactSection = () => {
     id: string;
     question: string;
     field: keyof FormData;
-    type: string;
-    placeholder?: string;
-    options?: string[];
+    type: "text" | "email" | "textarea";
+    placeholder: string;
   }[] = [
     {
       id: "greeting",
@@ -135,16 +133,54 @@ const ContactSection = () => {
       placeholder:
         "Describe your project, goals, and any specific requirements...",
     },
+    {
+      id: "budget",
+      question: "Do you have a project budget in mind?",
+      field: "budget",
+      type: "text",
+      placeholder: "e.g., $5,000 - $10,000",
+    },
+    {
+      id: "timeline",
+      question: "What is your ideal timeline?",
+      field: "timeline",
+      type: "text",
+      placeholder: "e.g., 3 months",
+    },
   ];
+
+  const validateStep = (): boolean => {
+    const { field } = conversationSteps[currentStep];
+    const value = formData[field];
+
+    switch (field) {
+      case "name":
+        return value.trim().length >= 2;
+      case "email":
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      case "message":
+        return value.trim().length >= 10;
+      default:
+        return true; // Optional steps
+    }
+  };
 
   const handleInputChange = (value: string) => {
     setFormData((prev) => ({
       ...prev,
       [conversationSteps[currentStep].field]: value,
     }));
+    setErrors(null);
   };
 
   const handleNext = () => {
+    if (!validateStep()) {
+      setErrors("Please enter valid information.");
+      return;
+    }
+
+    setErrors(null);
+
     if (currentStep < conversationSteps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
@@ -154,48 +190,58 @@ const ContactSection = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsSubmitting(false);
     setIsSubmitted(true);
+    localStorage.removeItem("contactFormData");
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (
+      e.key === "Enter" &&
+      conversationSteps[currentStep].type !== "textarea"
+    ) {
+      e.preventDefault();
+      handleNext();
+    }
   };
 
   const socialLinks = [
     {
       icon: Mail,
       label: "Email",
-      value: "3434343@gmail.com",
-      href: "mailto:43434@gmail.com",
+      value: "omarabdullah1811@gmail.com",
+      href: "mailto:omarabdullah1811@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+343434343",
+      value: "+8801798642262",
       href: "tel:+8801798642262",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "dhaka, Bangladesh",
+      value: "Cumilla, Bangladesh",
       href: "#",
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "/in/me-dfdfd",
-      href: "https://linkedin.com/in/me-dfdfd-fdf",
+      value: "/in/me-omar-faruk",
+      href: "https://linkedin.com/in/me-omar-faruk",
     },
     {
       icon: Github,
       label: "GitHub",
-      value: "@fdfdfsdf",
-      href: "https://github.com/dfdfdfdf",
+      value: "@omarfaruktaj",
+      href: "https://github.com/omarfaruktaj",
     },
     {
       icon: Twitter,
       label: "Twitter",
       value: "@me_omar",
-      href: "https://twitter.com/fdfdfsdf",
+      href: "https://twitter.com/me_omar",
     },
   ];
 
@@ -203,9 +249,7 @@ const ContactSection = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="flex items-center justify-center min-h-screen py-24 px-4 relative overflow-hidden 
-             bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 
-             dark:from-slate-900 dark:via-indigo-900 dark:to-purple-900"
+      className="flex items-center justify-center min-h-screen py-24 px-4 relative overflow-hidden bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-100 dark:from-slate-900 dark:via-indigo-900 dark:to-purple-900"
     >
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="contact-header text-center mb-16 opacity-0">
@@ -272,7 +316,6 @@ const ContactSection = () => {
                   </div>
                   <div className="w-full dark:bg-white/10 rounded-full h-2">
                     <div
-                      id="progress-bar"
                       className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
                       style={{
                         width: `${
@@ -306,6 +349,7 @@ const ContactSection = () => {
                           }
                           value={formData[conversationSteps[currentStep].field]}
                           onChange={(e) => handleInputChange(e.target.value)}
+                          onKeyDown={handleKeyDown}
                           className="w-full dark:bg-white/10 border dark:border-white/20 rounded-xl px-4 py-3 dark:text-white placeholder-muted-foreground focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300"
                         />
                       ) : (
@@ -315,18 +359,23 @@ const ContactSection = () => {
                           }
                           value={formData[conversationSteps[currentStep].field]}
                           onChange={(e) => handleInputChange(e.target.value)}
+                          onKeyDown={handleKeyDown}
                           rows={4}
                           className="w-full dark:bg-white/10 border dark:border-white/20 rounded-xl px-4 py-3 dark:text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 resize-none"
                         />
+                      )}
+                      {errors && (
+                        <p className="text-red-500 text-sm mt-2">{errors}</p>
                       )}
                     </div>
                   </div>
 
                   <div className="flex justify-between items-center pt-6">
                     <button
-                      onClick={() =>
-                        setCurrentStep(Math.max(0, currentStep - 1))
-                      }
+                      onClick={() => {
+                        setErrors(null);
+                        setCurrentStep(Math.max(0, currentStep - 1));
+                      }}
                       disabled={currentStep === 0}
                       className="px-6 py-3 dark:text-gray-400 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                     >

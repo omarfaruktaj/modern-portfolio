@@ -7,10 +7,10 @@ import Lenis from "lenis";
 import { useEffect, useRef } from "react";
 import { About } from "./_components/about";
 import BlogSection from "./_components/blogs";
-import ContactSection from "./_components/contact-section";
+import ContactSection from "./_components/contact";
 import { Hero } from "./_components/hero";
 import Projects from "./_components/projects";
-import Skills from "./_components/slills";
+import Skills from "./_components/skills";
 
 gsap.registerPlugin(ScrollTrigger);
 
