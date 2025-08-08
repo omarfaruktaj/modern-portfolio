@@ -44,6 +44,76 @@ const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const socialLinksRef = useRef<(HTMLAnchorElement | null)[]>([]);
   const formRef = useRef<HTMLDivElement>(null);
+  const inputElRef = useRef<HTMLInputElement>(null);
+  const textareaElRef = useRef<HTMLTextAreaElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  const conversationSteps: {
+    id: string;
+    question: string;
+    field: keyof FormData;
+    type: "text" | "email" | "textarea";
+    placeholder: string;
+  }[] = [
+    {
+      id: "greeting",
+      question: "Hi there! 👋 What's your name?",
+      field: "name",
+      type: "text",
+      placeholder: "Enter your name...",
+    },
+    {
+      id: "email",
+      question: `Nice to meet you, ${formData.name}! What's your email?`,
+      field: "email",
+      type: "email",
+      placeholder: "your.email@example.com",
+    },
+    {
+      id: "message",
+      question: "Tell me more about your project vision:",
+      field: "message",
+      type: "textarea",
+      placeholder:
+        "Describe your project, goals, and any specific requirements...",
+    },
+    {
+      id: "budget",
+      question: "Do you have a project budget in mind?",
+      field: "budget",
+      type: "text",
+      placeholder: "e.g., $5,000 - $10,000",
+    },
+    {
+      id: "timeline",
+      question: "What is your ideal timeline?",
+      field: "timeline",
+      type: "text",
+      placeholder: "e.g., 3 months",
+    },
+  ];
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        root: null,
+        threshold: 0.4, // Adjust depending on when you want to trigger focus
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   // Load saved data
   useEffect(() => {
@@ -52,6 +122,19 @@ const ContactSection = () => {
       setFormData(JSON.parse(saved));
     }
   }, []);
+  useEffect(() => {
+    if (!isInView) return;
+
+    if (
+      conversationSteps[currentStep].type === "text" ||
+      conversationSteps[currentStep].type === "email"
+    ) {
+      inputElRef.current?.focus();
+    } else {
+      textareaElRef.current?.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep]);
 
   // Save progress to localStorage
   useEffect(() => {
@@ -103,51 +186,6 @@ const ContactSection = () => {
       { opacity: 1, y: 0, duration: 0.5 }
     );
   }, [currentStep, isSubmitted]);
-
-  const conversationSteps: {
-    id: string;
-    question: string;
-    field: keyof FormData;
-    type: "text" | "email" | "textarea";
-    placeholder: string;
-  }[] = [
-    {
-      id: "greeting",
-      question: "Hi there! 👋 What's your name?",
-      field: "name",
-      type: "text",
-      placeholder: "Enter your name...",
-    },
-    {
-      id: "email",
-      question: `Nice to meet you, ${formData.name}! What's your email?`,
-      field: "email",
-      type: "email",
-      placeholder: "your.email@example.com",
-    },
-    {
-      id: "message",
-      question: "Tell me more about your project vision:",
-      field: "message",
-      type: "textarea",
-      placeholder:
-        "Describe your project, goals, and any specific requirements...",
-    },
-    {
-      id: "budget",
-      question: "Do you have a project budget in mind?",
-      field: "budget",
-      type: "text",
-      placeholder: "e.g., $5,000 - $10,000",
-    },
-    {
-      id: "timeline",
-      question: "What is your ideal timeline?",
-      field: "timeline",
-      type: "text",
-      placeholder: "e.g., 3 months",
-    },
-  ];
 
   const validateStep = (): boolean => {
     const { field } = conversationSteps[currentStep];
@@ -343,6 +381,7 @@ const ContactSection = () => {
                       {conversationSteps[currentStep].type === "text" ||
                       conversationSteps[currentStep].type === "email" ? (
                         <input
+                          ref={inputElRef}
                           type={conversationSteps[currentStep].type}
                           placeholder={
                             conversationSteps[currentStep].placeholder
@@ -354,6 +393,7 @@ const ContactSection = () => {
                         />
                       ) : (
                         <textarea
+                          ref={textareaElRef}
                           placeholder={
                             conversationSteps[currentStep].placeholder
                           }
@@ -388,7 +428,7 @@ const ContactSection = () => {
                         !formData[conversationSteps[currentStep].field] ||
                         isSubmitting
                       }
-                      className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 dark:text-white rounded-xl font-medium hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center space-x-2"
+                      className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-purple-500/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center space-x-2"
                     >
                       {isSubmitting ? (
                         <>
