@@ -1,4 +1,4 @@
-import { ProjectCardWithSlider } from "@/components/project-card";
+import { ProjectCardWithSlider } from "@/components/project-card-with-slider";
 import projects from "@/data/projects";
 
 export default function Projects() {

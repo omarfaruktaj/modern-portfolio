@@ -1,6 +1,6 @@
 "use client";
 
-import { ProjectCardWithSlider } from "@/components/project-card";
+import { ProjectCardWithSlider } from "@/components/project-card-with-slider";
 import projects from "@/data/projects";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
