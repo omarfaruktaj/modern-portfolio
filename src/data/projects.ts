@@ -86,7 +86,7 @@ const projects = [
       "An e-commerce frontend platform dedicated to high-quality mechanical keyboards.",
     description:
       "Iron Keys is a niche e-commerce frontend designed for mechanical keyboard enthusiasts. It offers fast performance, clean UI, and product filtering for an optimized shopping experience. Solving the gap for focused keyboard marketplaces, it is built with React, TypeScript, Redux, and Tailwind, ensuring modular components and scalable architecture.",
-    images: ["/projects/3.png", "/projects/2.png"],
+    images: ["/projects/3.png"],
 
     features: [
       "Homepage with featured products, brands, and customer reviews",

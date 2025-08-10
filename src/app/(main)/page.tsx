@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SmoothFollower from "@/components/ui/smooth-follower-cursor";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -102,6 +103,7 @@ export default function Home() {
         <ContactSection />
       </div>
       <SmoothFollower />
+      <ScrollToTopButton />
     </div>
   );
 }

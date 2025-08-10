@@ -4,7 +4,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
-  ArrowUp,
   Briefcase,
   Code,
   Globe,
@@ -17,7 +16,6 @@ import {
   User,
 } from "lucide-react";
 import { motion } from "motion/react";
-import { useState } from "react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -39,12 +37,6 @@ interface FooterProps {
 }
 
 export default function Footer({ scrollToSection }: FooterProps) {
-  const [showScrollTop, setShowScrollTop] = useState(true);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const quickLinks = [
     { name: "Home", href: "#home", icon: <User className="h-4 w-4" /> },
     { name: "About", href: "#about", icon: <User className="h-4 w-4" /> },
@@ -93,21 +85,6 @@ export default function Footer({ scrollToSection }: FooterProps) {
           }}
         />
       </div>
-
-      {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <motion.button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label="Scroll to top"
-        >
-          <ArrowUp className="h-5 w-5" />
-        </motion.button>
-      )}
 
       <div className="relative z-10">
         {/* Main Footer Content */}
