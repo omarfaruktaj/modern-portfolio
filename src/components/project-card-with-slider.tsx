@@ -54,7 +54,6 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
     const prev = (activeIndex - 1 + totalImages) % totalImages;
     handleImageChange(prev);
   };
-  console.log("image", project.images);
   return (
     <div
       className={cn(

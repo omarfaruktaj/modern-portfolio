@@ -47,7 +47,6 @@ export default function Header() {
     },
   ];
   const handleDownload = () => {
-    console.log("clicked");
     const link = document.createElement("a");
     link.href = "/files/omarfaruk's_resume.pdf";
     link.download = "omarfaruk's_resume.pdf";
