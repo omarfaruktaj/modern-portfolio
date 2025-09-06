@@ -1,6 +1,8 @@
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import LenisProvider from "@/components/LenisProvider";
 import { ThemeProvider } from "@/components/theme-provider";
+import SmoothFollower from "@/components/ui/smooth-follower-cursor";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -33,16 +35,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${roboto.className}  antialiased`}>
         {" "}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {children}
-          <Footer />{" "}
-        </ThemeProvider>
+        <LenisProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="light"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+            <SmoothFollower />
+          </ThemeProvider>
+        </LenisProvider>
       </body>
     </html>
   );

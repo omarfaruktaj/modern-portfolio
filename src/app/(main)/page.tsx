@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import SmoothFollower from "@/components/ui/smooth-follower-cursor";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { About } from "./_components/about";
 import BlogSection from "./_components/blogs";
 import ContactSection from "./_components/contact";
@@ -16,29 +14,7 @@ import Skills from "./_components/skills";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const lenisRef = useRef<Lenis | null>(null);
   useEffect(() => {
-    const lenis = new Lenis({
-      lerp: 0.05,
-      smoothWheel: true,
-    });
-
-    lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    // Connect Lenis with GSAP ScrollTrigger
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
     gsap.ticker.lagSmoothing(0);
 
     const sections = gsap.utils.toArray(".animate-section");
@@ -78,7 +54,6 @@ export default function Home() {
     });
 
     return () => {
-      lenis.destroy();
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
@@ -102,7 +77,6 @@ export default function Home() {
       <div className="animate-section">
         <ContactSection />
       </div>
-      <SmoothFollower />
       <ScrollToTopButton />
     </div>
   );
