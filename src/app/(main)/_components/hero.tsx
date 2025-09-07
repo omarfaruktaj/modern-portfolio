@@ -201,7 +201,7 @@ export function Hero() {
                       alt="John Doe - Full-Stack Developer"
                       width={400}
                       height={400}
-                      className="rounded-full w-80 h-80 object-cover transition-transform duration-300 "
+                      className="rounded-full w-96 h-96 object-cover transition-transform duration-300 "
                       priority
                     />
                     <CursorProvider>

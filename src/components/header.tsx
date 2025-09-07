@@ -46,11 +46,26 @@ export default function Header() {
       link: "/#contact",
     },
   ];
+  // const handleDownload = () => {
+  //   const link = document.createElement("a");
+  //   link.href = "/files/omarfaruk's_resume.pdf";
+  //   link.download = "omarfaruk's_resume.pdf";
+  //   link.click();
+  // };
+
   const handleDownload = () => {
+    const fileUrl = "/files/omarfaruk's_resume.pdf";
+
+    // ✅ 1. Trigger file download
     const link = document.createElement("a");
-    link.href = "/files/omarfaruk's_resume.pdf";
+    link.href = fileUrl;
     link.download = "omarfaruk's_resume.pdf";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
+
+    // ✅ 2. Open in new tab
+    window.open(fileUrl, "_blank", "noopener,noreferrer");
   };
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
