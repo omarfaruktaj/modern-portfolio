@@ -251,6 +251,17 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <div className=" hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+        <button
+          className="flex flex-col items-center text-muted-foreground hover:text-primary transition-colors"
+          aria-label="Scroll to About section"
+        >
+          <span className="text-sm font-medium mb-2">Scroll</span>
+          <div className="h-10 w-6 border-2 border-current rounded-full flex items-start justify-center p-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-current animate-scroll-down"></div>
+          </div>
+        </button>
+      </div>
     </section>
   );
 }
