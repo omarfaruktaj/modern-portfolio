@@ -228,10 +228,29 @@ const ContactSection = () => {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    localStorage.removeItem("contactFormData");
+
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setIsSubmitted(true);
+        localStorage.removeItem("contactFormData");
+      } else {
+        const result = await res.json();
+        setErrors(result.error || "Failed to send email.");
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      setErrors("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
