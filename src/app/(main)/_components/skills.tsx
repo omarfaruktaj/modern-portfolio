@@ -93,14 +93,12 @@ export default function Skills() {
     <TooltipProvider>
       <section
         ref={sectionRef}
-        className="flex items-center justify-center min-h-screen py-24 
-             bg-gradient-to-br from-slate-50 via-white to-slate-100 
-             dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
+        className="flex items-center justify-center min-h-screen py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
         id="skills"
       >
         <div className="container mx-auto px-4">
           <div className="skills-header text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text ">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text">
               Skills & Technologies
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
@@ -110,7 +108,7 @@ export default function Skills() {
             </p>
           </div>
 
-          <div className="grid gap-2 sm:gap-2 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-8">
+          <div className="grid gap-4 sm:gap-4 grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-8">
             {skills.map((skill, index) => {
               const Icon = skill.icon;
               const levelInfo = getLevelInfo(skill.level);
@@ -124,12 +122,12 @@ export default function Skills() {
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Card className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm p-3">
+                      <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-white/90 dark:bg-slate-800/90 backdrop-blur-md p-4 rounded-lg">
                         <CardContent>
                           <div className="flex flex-col items-center space-y-2">
                             <div className="relative">
                               <div
-                                className={`absolute inset-0 bg-gradient-to-r ${levelInfo.gradient} rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300`}
+                                className={`absolute inset-0 bg-gradient-to-r ${levelInfo.gradient} rounded-full blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-400`}
                               />
                               <div className="relative p-3 rounded-full bg-slate-50 dark:bg-slate-700/50 group-hover:bg-white dark:group-hover:bg-slate-700 transition-colors duration-300">
                                 <Icon
@@ -148,7 +146,7 @@ export default function Skills() {
                       </Card>
                     </TooltipTrigger>
                     <TooltipContent side="top">
-                      <p className="font-medium">
+                      <p className="font-medium text-sm">
                         {skill.name} — {skill.level} level proficiency
                       </p>
                     </TooltipContent>

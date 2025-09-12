@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -94,7 +93,8 @@ export default function Footer({ scrollToSection }: FooterProps) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+            className="grid
+ grid-cols-1 lg:grid-cols-12 gap-12"
           >
             {/* Brand Section */}
             <motion.div variants={fadeIn} className="lg:col-span-4">
