@@ -54,7 +54,7 @@ export default function BlogSection() {
              bg-gradient-to-b from-gray-50 to-gray-100 
              dark:from-slate-900 dark:to-slate-800"
     >
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 ">
         {/* Header */}
         <div className="blog-header mb-12 text-center opacity-0">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Blog</h1>

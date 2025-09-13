@@ -96,7 +96,7 @@ export default function Skills() {
         className="flex items-center justify-center min-h-screen py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900"
         id="skills"
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto max-w-7xl px-4">
           <div className="skills-header text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text">
               Skills & Technologies

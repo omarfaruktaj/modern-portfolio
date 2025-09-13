@@ -42,16 +42,16 @@ export default function Home() {
     });
 
     // Parallax effect for hero background
-    gsap.to(".parallax-bg", {
-      yPercent: -50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+    // gsap.to(".parallax-bg", {
+    //   yPercent: -50,
+    //   ease: "none",
+    //   scrollTrigger: {
+    //     trigger: ".hero-section",
+    //     start: "top bottom",
+    //     end: "bottom top",
+    //     scrub: true,
+    //   },
+    // });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
