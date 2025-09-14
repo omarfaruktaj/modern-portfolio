@@ -11,13 +11,11 @@ import {
   NavBody,
   NavItems,
 } from "@/components/ui/navbar";
-import { ThemeSwitcher } from "@/components/ui/theme-switcher";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeToggleButton } from "./theme-effect";
 
 export default function Header() {
-  const { theme, setTheme } = useTheme();
   const navItems = [
     {
       name: "Home",
@@ -75,10 +73,19 @@ export default function Header() {
         <Logo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <ThemeSwitcher
+          {/* <ThemeSwitcher
             defaultValue="system"
             value={theme as "light" | "dark" | "system" | undefined}
             onChange={setTheme as (theme: "light" | "dark" | "system") => void}
+          /> */}
+          <ThemeToggleButton
+            variant={"circle"}
+            start={"top-right"}
+            blur={true}
+            gifUrl={
+              "https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+            }
+            className="h-8 w-8 z-50"
           />
           <Button onClick={handleDownload} className="z-50">
             Resume
@@ -91,14 +98,24 @@ export default function Header() {
         <MobileNavHeader>
           <Logo />
           <div className="flex items-center gap-4">
-            <ThemeSwitcher
+            {/* <ThemeSwitcher
               className="w-22"
               defaultValue="system"
               value={theme as "light" | "dark" | "system" | undefined}
               onChange={
                 setTheme as (theme: "light" | "dark" | "system") => void
               }
+            /> */}
+            <ThemeToggleButton
+              variant={"circle"}
+              start={"top-right"}
+              blur={true}
+              gifUrl={
+                "https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
+              }
+              className="h-8 w-8 z-50"
             />
+
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

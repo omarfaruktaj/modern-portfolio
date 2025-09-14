@@ -122,7 +122,7 @@ export default function Skills() {
                 >
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br from-white/90 dark:bg-slate-800/90 backdrop-blur-md p-4 rounded-lg">
+                      <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 bg-gradient-to-br  dark:bg-slate-800/90 backdrop-blur-md p-4 rounded-lg">
                         <CardContent>
                           <div className="flex flex-col items-center space-y-2">
                             <div className="relative">
