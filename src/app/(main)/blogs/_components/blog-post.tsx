@@ -58,7 +58,7 @@ export default function BlogPostSection({ post }: { post: BlogPost }) {
       <ReadingProgress />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 pt-16">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
           {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
