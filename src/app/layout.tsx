@@ -1,3 +1,4 @@
+import BottomNavigation from "@/components/bottom-navigation";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import LenisProvider from "@/components/LenisProvider";
@@ -45,6 +46,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <BottomNavigation />
             <SmoothFollower />
           </ThemeProvider>
         </LenisProvider>

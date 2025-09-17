@@ -68,16 +68,11 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <Navbar className="top-2">
+    <Navbar className="top-2 hidden sm:block">
       <NavBody>
         <Logo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          {/* <ThemeSwitcher
-            defaultValue="system"
-            value={theme as "light" | "dark" | "system" | undefined}
-            onChange={setTheme as (theme: "light" | "dark" | "system") => void}
-          /> */}
           <ThemeToggleButton
             variant={"polygon"}
             start={"center"}
@@ -98,14 +93,6 @@ export default function Header() {
         <MobileNavHeader>
           <Logo />
           <div className="flex items-center gap-4">
-            {/* <ThemeSwitcher
-              className="w-22"
-              defaultValue="system"
-              value={theme as "light" | "dark" | "system" | undefined}
-              onChange={
-                setTheme as (theme: "light" | "dark" | "system") => void
-              }
-            /> */}
             <ThemeToggleButton
               variant={"polygon"}
               start={"center"}
