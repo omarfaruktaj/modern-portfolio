@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    site: "@yourTwitterHandle",
+    site: "@me_omar",
     title: "Omar Faruk - Full-Stack Developer",
     description:
       "Portfolio showcasing Omar Faruk's expertise in React, Next.js, and full-stack web development.",

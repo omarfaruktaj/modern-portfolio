@@ -74,7 +74,7 @@ export default function Header() {
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
           <ThemeToggleButton
-            variant={"polygon"}
+            variant={"circle"}
             start={"center"}
             blur={false}
             gifUrl={
@@ -94,7 +94,7 @@ export default function Header() {
           <Logo />
           <div className="flex items-center gap-4">
             <ThemeToggleButton
-              variant={"polygon"}
+              variant={"circle"}
               start={"center"}
               blur={false}
               gifUrl={

@@ -18,7 +18,7 @@ export default function BottomNavigation() {
           particleCount={15}
           particleDistances={[90, 10]}
           particleR={100}
-          initialActiveIndex={1}
+          initialActiveIndex={0}
           animationTime={600}
           timeVariance={300}
         />
