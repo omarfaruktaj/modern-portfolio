@@ -52,7 +52,7 @@ export function BlogCard({
         onHoverEnd={() => setIsHovered(false)}
       >
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" /> */}
 
         <div className="grid lg:grid-cols-2">
           {/* Featured Image */}
@@ -216,7 +216,7 @@ export function BlogCard({
       onHoverEnd={() => setIsHovered(false)}
     >
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" /> */}
 
       {/* Featured Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
@@ -318,7 +318,7 @@ export function BlogCard({
       </div>
 
       {/* Hover Glow Effect */}
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 blur transition-opacity duration-300 group-hover:opacity-100 -z-10" />
+      {/* <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 blur transition-opacity duration-300 group-hover:opacity-100 -z-10" /> */}
     </motion.article>
   );
 }
