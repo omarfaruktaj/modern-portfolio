@@ -75,7 +75,7 @@ const BottomNavigation: React.FC<ModernMobileNavProps> = ({
       <div
         className={cn(
           "fixed bottom-0 left-0 right-0 z-50 md:hidden",
-          "px-6 pb-6 pt-4",
+          // "px-6 pb-6 pt-4",
           className
         )}
       >
@@ -130,7 +130,7 @@ const BottomNavigation: React.FC<ModernMobileNavProps> = ({
             </div>
           </div>
 
-          <div className="bg-[var(--nav-glass)] backdrop-blur-xl  rounded-3xl p-3  ">
+          <div className="bg-[var(--nav-glass)] backdrop-blur-xl  rounded-3xl">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {items.slice(0, 3).map((item, index) => {
