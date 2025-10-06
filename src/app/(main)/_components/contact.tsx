@@ -1,5 +1,6 @@
 "use client";
 
+import { sendGTMEvent } from "@next/third-parties/google";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -199,7 +200,7 @@ const ContactSection = () => {
       case "message":
         return value.trim().length >= 10;
       default:
-        return true; // Optional steps
+        return true;
     }
   };
 
@@ -220,6 +221,14 @@ const ContactSection = () => {
     setErrors(null);
 
     if (currentStep < conversationSteps.length - 1) {
+      sendGTMEvent({
+        event: "form_step",
+        category: "Contact Form",
+        label: conversationSteps[currentStep].field,
+        value: currentStep + 1,
+        user_input: formData[conversationSteps[currentStep].field],
+      });
+
       setCurrentStep(currentStep + 1);
     } else {
       handleSubmit();
@@ -241,13 +250,30 @@ const ContactSection = () => {
       if (res.ok) {
         setIsSubmitted(true);
         localStorage.removeItem("contactFormData");
+        sendGTMEvent({
+          event: "form_submit",
+          category: "Contact Form",
+          label: "Successful Submission",
+          value: formData.email,
+        });
       } else {
         const result = await res.json();
+
         setErrors(result.error || "Failed to send email.");
+        sendGTMEvent({
+          event: "form_error",
+          category: "Contact Form",
+          label: "Submit Failed",
+        });
       }
     } catch (error) {
       console.error("Unexpected error:", error);
       setErrors("Something went wrong. Please try again.");
+      sendGTMEvent({
+        event: "form_error",
+        category: "Contact Form",
+        label: "Exception Thrown",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -340,6 +366,14 @@ const ContactSection = () => {
                   ref={(el) => {
                     socialLinksRef.current[index] = el;
                   }}
+                  onClick={() =>
+                    sendGTMEvent({
+                      event: "social_click",
+                      category: "Contact",
+                      label: link.label,
+                      value: link.href,
+                    })
+                  }
                   className="group flex items-center space-x-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 opacity-0"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

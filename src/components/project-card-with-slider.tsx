@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -193,7 +194,17 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
 
       <div className="flex flex-col gap-3 pt-2 lg:flex-row lg:items-center">
         {project.links.liveDemo && (
-          <Button asChild className="w-full lg:w-auto">
+          <Button
+            onClick={() =>
+              sendGTMEvent({
+                event: "project_click",
+                category: "Project Card",
+                label: `Live Demo - ${project.title}`,
+              })
+            }
+            asChild
+            className="w-full lg:w-auto"
+          >
             <Link
               href={project.links.liveDemo || "#"}
               target="_blank"
@@ -205,7 +216,19 @@ export const ProjectCardWithSlider: React.FC<ProjectCardProps> = ({
             </Link>
           </Button>
         )}
-        <Button asChild variant="outline" className="w-full lg:w-auto">
+        <Button
+          onClick={() =>
+            sendGTMEvent({
+              event: "project_click",
+              category: "Project Card",
+              label: `More Details - ${project.title}`,
+              value: project.id,
+            })
+          }
+          asChild
+          variant="outline"
+          className="w-full lg:w-auto"
+        >
           <Link
             href={`/projects/${project.id}`}
             className="flex items-center gap-1.5"

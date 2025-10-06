@@ -2,8 +2,10 @@ import BottomNavigation from "@/components/bottom-navigation";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import LenisProvider from "@/components/LenisProvider";
+import PageViewsTracker from "@/components/page-view-tracker";
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothFollower from "@/components/ui/smooth-follower-cursor";
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
@@ -92,6 +94,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -99,6 +102,8 @@ export default function RootLayout({
           name="google-site-verification"
           content="wk0W4INXXl1l6T4NbgHOUD5YCPsx0nqT5PadbhvB4KM"
         />
+        <GoogleTagManager gtmId={gtmId as string} />
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -113,7 +118,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${roboto.className}  antialiased`}>
-        {" "}
+        <PageViewsTracker />
         <LenisProvider>
           <ThemeProvider
             attribute="class"

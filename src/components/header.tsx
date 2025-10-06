@@ -11,6 +11,7 @@ import {
   NavBody,
   NavItems,
 } from "@/components/ui/navbar";
+import { sendGTMEvent } from "@next/third-parties/google";
 import Link from "next/link";
 import { useState } from "react";
 import { ThemeToggleButton } from "./theme-effect";
@@ -52,6 +53,7 @@ export default function Header() {
   // };
 
   const handleDownload = () => {
+    sendGTMEvent({ event: "button_clicked", label: "Resume" });
     const fileUrl = "/files/omarfaruk's_resume.pdf";
 
     // ✅ 1. Trigger file download

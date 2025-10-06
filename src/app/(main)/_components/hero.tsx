@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Cursor, CursorFollow, CursorProvider } from "@/components/ui/cursor";
 import { MorphingText } from "@/components/ui/morphing-text";
+import { sendGTMEvent } from "@next/third-parties/google";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
@@ -131,7 +132,15 @@ export function Hero() {
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 ref={ctaRef}
               >
-                <Button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
+                <Button
+                  onClick={() =>
+                    sendGTMEvent({
+                      event: "button_clicked",
+                      label: "View My Work",
+                    })
+                  }
+                  className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 focus:outline-none focus:ring-4 focus:ring-blue-500/50"
+                >
                   <Link
                     href={"/#projects"}
                     className="relative z-10 flex items-center justify-center"
@@ -156,6 +165,12 @@ export function Hero() {
 
                 <Button
                   variant={"outline"}
+                  onClick={() =>
+                    sendGTMEvent({
+                      event: "button_clicked",
+                      label: "Let's Connect",
+                    })
+                  }
                   className="group px-8 py-4 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-full transition-all duration-300 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-500/50 backdrop-blur-sm bg-white/50 dark:bg-gray-800/50"
                   asChild
                 >
