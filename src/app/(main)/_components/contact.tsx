@@ -15,6 +15,7 @@ import {
   Send,
   Twitter,
 } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -360,7 +361,7 @@ const ContactSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {socialLinks.map((link, index) => (
-                <a
+                <Link
                   key={link.label}
                   href={link.href}
                   ref={(el) => {
@@ -385,7 +386,7 @@ const ContactSection = () => {
                       {link.value}
                     </p>
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

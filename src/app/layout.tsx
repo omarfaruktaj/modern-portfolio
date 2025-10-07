@@ -94,7 +94,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  const gtmId = process.env.GTM_ID;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -102,7 +102,6 @@ export default function RootLayout({
           name="google-site-verification"
           content="wk0W4INXXl1l6T4NbgHOUD5YCPsx0nqT5PadbhvB4KM"
         />
-        <GoogleTagManager gtmId={gtmId as string} />
 
         <script
           type="application/ld+json"
@@ -118,6 +117,8 @@ export default function RootLayout({
         />
       </head>
       <body className={`${roboto.className}  antialiased`}>
+        <GoogleTagManager gtmId={gtmId as string} />
+
         <PageViewsTracker />
         <LenisProvider>
           <ThemeProvider
