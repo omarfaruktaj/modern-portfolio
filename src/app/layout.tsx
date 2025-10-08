@@ -95,6 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const gtmId = process.env.GTM_ID;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -116,9 +117,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${roboto.className}  antialiased`}>
-        <GoogleTagManager gtmId={gtmId as string} />
+      <GoogleTagManager gtmId={gtmId as string} />
 
+      <body className={`${roboto.className}  antialiased`}>
         <PageViewsTracker />
         <LenisProvider>
           <ThemeProvider

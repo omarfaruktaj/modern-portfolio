@@ -1,4 +1,5 @@
 "use client";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -6,8 +7,7 @@ function PageViewsTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // push a custom event to indicate a page navigation
-    window.dataLayer?.push({
+    sendGTMEvent({
       event: "pageview",
       page_path: pathname,
     });

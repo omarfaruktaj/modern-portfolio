@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
@@ -59,6 +60,8 @@ export default function Home() {
   }, []);
   return (
     <div>
+      <GoogleTagManager gtmId="GTM-KLDJWWSS" />
+
       <div className="hero-section ">
         <Hero />
       </div>
