@@ -10,7 +10,7 @@ export const blogs = [
     author: {
       id: "laura-nguyen",
       name: "Omar Faruk",
-      avatar: "/placeholder.svg?height=100&width=100",
+      avatar: "/images/omar.png",
       bio: "Cloud-native developer and JAMstack advocate.",
       role: "Full-Stack Developer",
       social: {
@@ -38,7 +38,7 @@ export const blogs = [
     author: {
       id: "emily-roberts",
       name: "Omar Faruk",
-      avatar: "/placeholder.svg?height=100&width=100",
+      avatar: "/images/omar.png",
       bio: "CSS wizard and advocate for accessible design.",
       role: "Full-Stack Developer",
       social: {
@@ -66,7 +66,7 @@ export const blogs = [
     author: {
       id: "david-lee",
       name: "Omar Faruk",
-      avatar: "/placeholder.svg?height=100&width=100",
+      avatar: "/images/omar.png",
       bio: "Full-stack developer exploring AI-driven interfaces.",
       role: "Full-Stack Developer",
       social: {
@@ -94,7 +94,7 @@ export const blogs = [
     author: {
       id: "kevin-brooks",
       name: "Omar Faruk",
-      avatar: "/placeholder.svg?height=100&width=100",
+      avatar: "/images/omar.png",
       bio: "Software tester turned full-stack engineer.",
       role: "Full-Stack Developer",
       social: {
@@ -122,7 +122,7 @@ export const blogs = [
     author: {
       id: "nina-gomez",
       name: "Omar Faruk",
-      avatar: "/placeholder.svg?height=100&width=100",
+      avatar: "/images/omar.png",
       bio: "DevOps and tooling enthusiast focused on productivity.",
       role: "Full-Stack Developer",
       social: {

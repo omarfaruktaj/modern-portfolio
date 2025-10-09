@@ -79,9 +79,6 @@ export default function Header() {
             variant={"circle"}
             start={"center"}
             blur={false}
-            gifUrl={
-              "https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
-            }
             className="h-8 w-8 z-50"
           />
           <Button onClick={handleDownload} className="z-50">
@@ -96,12 +93,9 @@ export default function Header() {
           <Logo />
           <div className="flex items-center gap-4">
             <ThemeToggleButton
-              variant={"circle"}
+              variant={"rectangle"}
               start={"center"}
               blur={false}
-              gifUrl={
-                "https://media.giphy.com/media/KBbr4hHl9DSahKvInO/giphy.gif?cid=790b76112m5eeeydoe7et0cr3j3ekb1erunxozyshuhxx2vl&ep=v1_stickers_search&rid=giphy.gif&ct=s"
-              }
               className="h-8 w-8 z-50"
             />
 
