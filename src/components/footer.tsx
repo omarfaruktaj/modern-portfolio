@@ -1,17 +1,13 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import {
   Briefcase,
   Code,
   Globe,
-  Heart,
   Mail,
   MapPin,
   MessageSquare,
   Phone,
-  Shield,
   User,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -86,7 +82,6 @@ export default function Footer({ scrollToSection }: FooterProps) {
       </div>
 
       <div className="relative z-10">
-        {/* Main Footer Content */}
         <div className="container mx-auto px-4 py-16">
           <motion.div
             initial="hidden"
@@ -184,39 +179,6 @@ export default function Footer({ scrollToSection }: FooterProps) {
               </div>
             </motion.div>
           </motion.div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-700 bg-gray-800/50">
-          <div className="container mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="flex items-center gap-4">
-                <p className="text-gray-400 text-sm">
-                  &copy; {new Date().getFullYear()} Omar Faruk. All rights
-                  reserved.
-                </p>
-                <Badge
-                  variant="outline"
-                  className="border-gray-600 text-gray-400"
-                >
-                  Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> by
-                  Omar
-                </Badge>
-              </div>
-
-              <div className="flex items-center gap-4 text-sm text-gray-400">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-4 w-4" />
-                  <span>Secure & Privacy-First</span>
-                </div>
-                <Separator orientation="vertical" className="h-4 bg-gray-600" />
-                <div className="flex items-center gap-2">
-                  <Globe className="h-4 w-4" />
-                  <span>Built with modern web standards</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
