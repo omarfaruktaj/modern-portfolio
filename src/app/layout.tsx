@@ -1,7 +1,7 @@
-import BottomNavigation from "@/components/bottom-navigation";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import LenisProvider from "@/components/LenisProvider";
+import MobileNavigation from "@/components/mobile-navigation";
 import PageViewsTracker from "@/components/page-view-tracker";
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothFollower from "@/components/ui/smooth-follower-cursor";
@@ -131,7 +131,8 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
-            <BottomNavigation />
+            {/* <BottomNavigation /> */}
+            <MobileNavigation />
             <SmoothFollower />
           </ThemeProvider>
         </LenisProvider>
