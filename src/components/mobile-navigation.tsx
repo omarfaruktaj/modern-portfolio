@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { sendGTMEvent } from "@next/third-parties/google";
 import {
   BookOpen,
   Briefcase,
@@ -14,6 +15,7 @@ import {
 import Link from "next/link";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "./ui/button";
 
 interface NavItem {
   label: string;
@@ -34,7 +36,7 @@ const defaultItems: NavItem[] = [
   { label: "About", href: "/#about", icon: User },
   { label: "Skills", href: "/#skills", icon: Briefcase },
   { label: "Projects", href: "/projects", icon: FolderOpen },
-  { label: "Blog", href: "/blogs", icon: BookOpen, badge: "3" },
+  { label: "Blog", href: "/blogs", icon: BookOpen },
   { label: "Contact", href: "/#contact", icon: Mail },
 ];
 
@@ -78,6 +80,8 @@ const MobileNavigation: React.FC<ModernMobileNavProps> = ({
     href: string,
     event: React.MouseEvent
   ) => {
+    setIsExpanded(false);
+
     setActiveIndex(index);
     triggerHapticFeedback();
 
@@ -107,7 +111,21 @@ const MobileNavigation: React.FC<ModernMobileNavProps> = ({
     setIsExpanded(!isExpanded);
     triggerHapticFeedback();
   };
+  const handleDownload = () => {
+    sendGTMEvent({ event: "button_clicked", label: "Resume" });
+    const fileUrl = "/files/omarfaruk's_resume.pdf";
 
+    // ✅ 1. Trigger file download
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "omarfaruk's_resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // ✅ 2. Open in new tab
+    window.open(fileUrl, "_blank", "noopener,noreferrer");
+  };
   const getVariantStyles = () => {
     switch (variant) {
       case "floating":
@@ -177,7 +195,7 @@ const MobileNavigation: React.FC<ModernMobileNavProps> = ({
               )}
             >
               <div className="grid grid-cols-2 gap-3">
-                {items.map((item, index) => {
+                {items.slice(4).map((item, index) => {
                   const Icon = item.icon;
                   const isActive = activeIndex === index;
                   const isHovered = hoveredIndex === index;
@@ -223,6 +241,9 @@ const MobileNavigation: React.FC<ModernMobileNavProps> = ({
                   );
                 })}
               </div>
+              <Button onClick={handleDownload} className="z-50 my-3 w-full">
+                Resume
+              </Button>
             </div>
           </div>
 
@@ -232,7 +253,7 @@ const MobileNavigation: React.FC<ModernMobileNavProps> = ({
             <div className="flex items-center justify-between p-2">
               {/* Left section - First 3 items */}
               <div className="flex items-center gap-1 flex-1">
-                {items.slice(0, 3).map((item, index) => {
+                {items.slice(0, 4).map((item, index) => {
                   const Icon = item.icon;
                   const isActive = activeIndex === index;
                   const isHovered = hoveredIndex === index;
